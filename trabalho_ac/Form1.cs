@@ -41,5 +41,14 @@ namespace trabalho_ac
         {
 
         }
+
+        private void convertNumber(object sender, EventArgs e) {
+            int n1 = int.Parse(valueOne.Text);
+            int n2 = int.Parse(valueTwo.Text);
+            string n1Bin = Convert.ToString(n1, 2);
+            string n2Bin = Convert.ToString(n2, 2);
+            valueOneHex.Text = n1Bin.PadLeft(24, '0');
+            valueTwoHex.Text = n2Bin.PadLeft(24, '0');
+        }
     }
 }

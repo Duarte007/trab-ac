@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.valueOne = new System.Windows.Forms.TextBox();
+            this.valueTwo = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.valueOneHex = new System.Windows.Forms.TextBox();
+            this.valueTwoHex = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
@@ -53,75 +53,75 @@
             this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox1
+            // valueOne
             // 
-            this.textBox1.Location = new System.Drawing.Point(104, 87);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(115, 20);
-            this.textBox1.TabIndex = 0;
+            this.valueOne.Location = new System.Drawing.Point(94, 87);
+            this.valueOne.Name = "valueOne";
+            this.valueOne.Size = new System.Drawing.Size(115, 20);
+            this.valueOne.TabIndex = 0;
             // 
-            // textBox2
+            // valueTwo
             // 
-            this.textBox2.Location = new System.Drawing.Point(473, 87);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(115, 20);
-            this.textBox2.TabIndex = 1;
+            this.valueTwo.Location = new System.Drawing.Point(478, 87);
+            this.valueTwo.Name = "valueTwo";
+            this.valueTwo.Size = new System.Drawing.Size(115, 20);
+            this.valueTwo.TabIndex = 1;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(22, 147);
+            this.textBox3.Location = new System.Drawing.Point(12, 147);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(52, 20);
             this.textBox3.TabIndex = 2;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(80, 147);
+            this.textBox4.Location = new System.Drawing.Point(70, 147);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(91, 20);
             this.textBox4.TabIndex = 3;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(177, 147);
+            this.textBox5.Location = new System.Drawing.Point(167, 147);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(126, 20);
             this.textBox5.TabIndex = 4;
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(385, 147);
+            this.textBox6.Location = new System.Drawing.Point(390, 147);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(52, 20);
             this.textBox6.TabIndex = 5;
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(443, 147);
+            this.textBox7.Location = new System.Drawing.Point(448, 147);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(91, 20);
             this.textBox7.TabIndex = 6;
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(540, 147);
+            this.textBox8.Location = new System.Drawing.Point(545, 147);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(126, 20);
             this.textBox8.TabIndex = 7;
             // 
-            // textBox9
+            // valueOneHex
             // 
-            this.textBox9.Location = new System.Drawing.Point(91, 201);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(138, 20);
-            this.textBox9.TabIndex = 8;
+            this.valueOneHex.Location = new System.Drawing.Point(81, 201);
+            this.valueOneHex.Name = "valueOneHex";
+            this.valueOneHex.Size = new System.Drawing.Size(138, 20);
+            this.valueOneHex.TabIndex = 8;
             // 
-            // textBox10
+            // valueTwoHex
             // 
-            this.textBox10.Location = new System.Drawing.Point(463, 201);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(138, 20);
-            this.textBox10.TabIndex = 9;
+            this.valueTwoHex.Location = new System.Drawing.Point(468, 201);
+            this.valueTwoHex.Name = "valueTwoHex";
+            this.valueTwoHex.Size = new System.Drawing.Size(138, 20);
+            this.valueTwoHex.TabIndex = 9;
             // 
             // textBox11
             // 
@@ -168,6 +168,7 @@
             this.button1.TabIndex = 15;
             this.button1.Text = "Converter";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.convertNumber);
             // 
             // button2
             // 
@@ -219,7 +220,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
-            this.label2.Location = new System.Drawing.Point(136, 48);
+            this.label2.Location = new System.Drawing.Point(126, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 18);
             this.label2.TabIndex = 21;
@@ -229,7 +230,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
-            this.label3.Location = new System.Drawing.Point(506, 48);
+            this.label3.Location = new System.Drawing.Point(511, 48);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 18);
             this.label3.TabIndex = 22;
@@ -265,16 +266,16 @@
             this.Controls.Add(this.textBox13);
             this.Controls.Add(this.textBox12);
             this.Controls.Add(this.textBox11);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.textBox9);
+            this.Controls.Add(this.valueTwoHex);
+            this.Controls.Add(this.valueOneHex);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
             this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.valueTwo);
+            this.Controls.Add(this.valueOne);
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Manipulador de binários";
@@ -286,16 +287,16 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox valueOne;
+        private System.Windows.Forms.TextBox valueTwo;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox valueOneHex;
+        private System.Windows.Forms.TextBox valueTwoHex;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.TextBox textBox13;
