@@ -1,6 +1,6 @@
 ﻿namespace trabalho_ac
 {
-    partial class Form1
+    partial class binaryHandler
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -30,12 +30,12 @@
         {
             this.valueOne = new System.Windows.Forms.TextBox();
             this.valueTwo = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.signalBit1 = new System.Windows.Forms.TextBox();
+            this.expoente1 = new System.Windows.Forms.TextBox();
+            this.fracao1 = new System.Windows.Forms.TextBox();
+            this.signalBit2 = new System.Windows.Forms.TextBox();
+            this.expoente2 = new System.Windows.Forms.TextBox();
+            this.fracao2 = new System.Windows.Forms.TextBox();
             this.valueOneHex = new System.Windows.Forms.TextBox();
             this.valueTwoHex = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
@@ -67,47 +67,47 @@
             this.valueTwo.Size = new System.Drawing.Size(115, 20);
             this.valueTwo.TabIndex = 1;
             // 
-            // textBox3
+            // signalBit1
             // 
-            this.textBox3.Location = new System.Drawing.Point(12, 147);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(52, 20);
-            this.textBox3.TabIndex = 2;
+            this.signalBit1.Location = new System.Drawing.Point(12, 147);
+            this.signalBit1.Name = "signalBit1";
+            this.signalBit1.Size = new System.Drawing.Size(28, 20);
+            this.signalBit1.TabIndex = 2;
             // 
-            // textBox4
+            // expoente1
             // 
-            this.textBox4.Location = new System.Drawing.Point(70, 147);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(91, 20);
-            this.textBox4.TabIndex = 3;
+            this.expoente1.Location = new System.Drawing.Point(46, 147);
+            this.expoente1.Name = "expoente1";
+            this.expoente1.Size = new System.Drawing.Size(81, 20);
+            this.expoente1.TabIndex = 3;
             // 
-            // textBox5
+            // fracao1
             // 
-            this.textBox5.Location = new System.Drawing.Point(167, 147);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(126, 20);
-            this.textBox5.TabIndex = 4;
+            this.fracao1.Location = new System.Drawing.Point(133, 147);
+            this.fracao1.Name = "fracao1";
+            this.fracao1.Size = new System.Drawing.Size(160, 20);
+            this.fracao1.TabIndex = 4;
             // 
-            // textBox6
+            // signalBit2
             // 
-            this.textBox6.Location = new System.Drawing.Point(390, 147);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(52, 20);
-            this.textBox6.TabIndex = 5;
+            this.signalBit2.Location = new System.Drawing.Point(390, 147);
+            this.signalBit2.Name = "signalBit2";
+            this.signalBit2.Size = new System.Drawing.Size(29, 20);
+            this.signalBit2.TabIndex = 5;
             // 
-            // textBox7
+            // expoente2
             // 
-            this.textBox7.Location = new System.Drawing.Point(448, 147);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(91, 20);
-            this.textBox7.TabIndex = 6;
+            this.expoente2.Location = new System.Drawing.Point(425, 147);
+            this.expoente2.Name = "expoente2";
+            this.expoente2.Size = new System.Drawing.Size(81, 20);
+            this.expoente2.TabIndex = 6;
             // 
-            // textBox8
+            // fracao2
             // 
-            this.textBox8.Location = new System.Drawing.Point(545, 147);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(126, 20);
-            this.textBox8.TabIndex = 7;
+            this.fracao2.Location = new System.Drawing.Point(512, 147);
+            this.fracao2.Name = "fracao2";
+            this.fracao2.Size = new System.Drawing.Size(159, 20);
+            this.fracao2.TabIndex = 7;
             // 
             // valueOneHex
             // 
@@ -247,7 +247,7 @@
             this.label4.Text = "Resultado";
             this.label4.Click += new System.EventHandler(this.Label4_Click);
             // 
-            // Form1
+            // binaryHandler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -268,15 +268,15 @@
             this.Controls.Add(this.textBox11);
             this.Controls.Add(this.valueTwoHex);
             this.Controls.Add(this.valueOneHex);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.fracao2);
+            this.Controls.Add(this.expoente2);
+            this.Controls.Add(this.signalBit2);
+            this.Controls.Add(this.fracao1);
+            this.Controls.Add(this.expoente1);
+            this.Controls.Add(this.signalBit1);
             this.Controls.Add(this.valueTwo);
             this.Controls.Add(this.valueOne);
-            this.Name = "Form1";
+            this.Name = "binaryHandler";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "Manipulador de binários";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -289,12 +289,12 @@
 
         private System.Windows.Forms.TextBox valueOne;
         private System.Windows.Forms.TextBox valueTwo;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox signalBit1;
+        private System.Windows.Forms.TextBox expoente1;
+        private System.Windows.Forms.TextBox fracao1;
+        private System.Windows.Forms.TextBox signalBit2;
+        private System.Windows.Forms.TextBox expoente2;
+        private System.Windows.Forms.TextBox fracao2;
         private System.Windows.Forms.TextBox valueOneHex;
         private System.Windows.Forms.TextBox valueTwoHex;
         private System.Windows.Forms.TextBox textBox11;
