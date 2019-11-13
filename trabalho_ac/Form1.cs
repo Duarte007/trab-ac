@@ -67,5 +67,20 @@ namespace trabalho_ac
             valueOneHex.Text = "0x"+n1Hex.ToUpper();
             valueTwoHex.Text = "0x"+n2Hex.ToUpper();
         }
+
+        private void Button2_Click(object sender, EventArgs e) {
+            IEEE754 patternIEEE = new IEEE754();
+            valueOne.Text = !string.IsNullOrEmpty(valueOne.Text) ? valueOne.Text : "0";
+            valueTwo.Text = !string.IsNullOrEmpty(valueTwo.Text) ? valueTwo.Text : "0";
+            string nBin1 = patternIEEE.FloatToBinary(float.Parse(valueOne.Text));
+            string nBin2 = patternIEEE.FloatToBinary(float.Parse(valueTwo.Text));
+            string[] tokens = nBin1.Split();
+            int[] convertedItems = Array.ConvertAll<string, int>(tokens, int.Parse);
+            string[] tokens2 = nBin1.Split();
+            int[] convertedItems2 = Array.ConvertAll<string, int>(tokens, int.Parse);
+            Ula24Bits ula = new Ula24Bits(convertedItems, convertedItems2, 3, 0);
+            int[] saidas = ula.getSaidas();
+            string result = string.Join(string.Empty, saidas);
+        }
     }
 }
