@@ -74,11 +74,14 @@ namespace trabalho_ac
 
             this.currentExpo = exponentBin1;
             if (lengthBin1 > lengthBin2) {
-                fractionBin2 = ("1" + fractionBin2.Substring(0, 22));
-                this.currentExpo = exponentBin1;
-            } else if(lengthBin1 < lengthBin2) {
-                fractionBin1 = ("1" + fractionBin1.Substring(0, 22));
-                this.currentExpo = exponentBin2;
+                int diff = lengthBin1 - lengthBin2;
+                this.currentExpo = new Ula8Bits(arrayParse(exponentBin1, 8), arrayParse(diff.ToString("2"), 8), 3, 0).getSaidas().ToString();
+            } else if (lengthBin1 < lengthBin2) {
+                int diff = lengthBin2 - lengthBin1;
+                this.currentExpo = new Ula8Bits(arrayParse(exponentBin2, 8), arrayParse(diff.ToString("2"), 8), 3, 0).getSaidas().ToString();
+            } else {
+                int[] bla = new int[8] { 0, 0, 0, 0, 0, 0, 0, 1 };
+                this.currentExpo = new Ula8Bits(arrayParse(exponentBin1, 8), bla, 3, 0).getSaidas().ToString();
             }
             fractionBin1 = fractionBin1.PadLeft(32, '0');
             fractionBin2 = fractionBin2.PadLeft(32, '0');
@@ -89,8 +92,8 @@ namespace trabalho_ac
 
         }
 
-        private int[] array32BitsParse(string bin){
-            int[] arr = new int[32];
+        private int[] arrayParse(string bin, int length){
+            int[] arr = new int[length];
             int i = 0;
             foreach (char number in bin) {
                 arr[i] = int.Parse(number.ToString());
@@ -130,8 +133,8 @@ namespace trabalho_ac
             int signal1 = int.Parse(nBin1[0].ToString());
             int signal2 = int.Parse(nBin2[0].ToString());
             string[] resultP = normalizeBin(nBin1, nBin2);
-            int[] arrBin1 = array32BitsParse(resultP[0]);
-            int[] arrBin2 = array32BitsParse(resultP[1]);
+            int[] arrBin1 = arrayParse(resultP[0], 32);
+            int[] arrBin2 = arrayParse(resultP[1], 32);
             Ula32Bits ula = new Ula32Bits(arrBin1, arrBin2, 3, 0);
             int[] saidas = ula.getSaidas();
             string result = string.Join(string.Empty, saidas);
