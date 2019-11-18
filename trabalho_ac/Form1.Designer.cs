@@ -39,12 +39,12 @@
             this.valueOneHex = new System.Windows.Forms.TextBox();
             this.valueTwoHex = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.signalResult = new System.Windows.Forms.TextBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.expoentResult = new System.Windows.Forms.TextBox();
+            this.fracaoResult = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.buttonSum = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -130,12 +130,12 @@
             this.textBox11.Size = new System.Drawing.Size(115, 20);
             this.textBox11.TabIndex = 10;
             // 
-            // textBox12
+            // signalResult
             // 
-            this.textBox12.Location = new System.Drawing.Point(197, 397);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(52, 20);
-            this.textBox12.TabIndex = 11;
+            this.signalResult.Location = new System.Drawing.Point(197, 397);
+            this.signalResult.Name = "signalResult";
+            this.signalResult.Size = new System.Drawing.Size(32, 20);
+            this.signalResult.TabIndex = 11;
             // 
             // textBox13
             // 
@@ -144,19 +144,19 @@
             this.textBox13.Size = new System.Drawing.Size(144, 20);
             this.textBox13.TabIndex = 12;
             // 
-            // textBox14
+            // expoentResult
             // 
-            this.textBox14.Location = new System.Drawing.Point(255, 397);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(91, 20);
-            this.textBox14.TabIndex = 13;
+            this.expoentResult.Location = new System.Drawing.Point(235, 397);
+            this.expoentResult.Name = "expoentResult";
+            this.expoentResult.Size = new System.Drawing.Size(111, 20);
+            this.expoentResult.TabIndex = 13;
             // 
-            // textBox15
+            // fracaoResult
             // 
-            this.textBox15.Location = new System.Drawing.Point(352, 397);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(126, 20);
-            this.textBox15.TabIndex = 14;
+            this.fracaoResult.Location = new System.Drawing.Point(352, 397);
+            this.fracaoResult.Name = "fracaoResult";
+            this.fracaoResult.Size = new System.Drawing.Size(154, 20);
+            this.fracaoResult.TabIndex = 14;
             // 
             // button1
             // 
@@ -170,17 +170,17 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.convertNumber);
             // 
-            // button2
+            // buttonSum
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.button2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
-            this.button2.Location = new System.Drawing.Point(257, 264);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(36, 34);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "+";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            this.buttonSum.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.buttonSum.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F);
+            this.buttonSum.Location = new System.Drawing.Point(257, 264);
+            this.buttonSum.Name = "buttonSum";
+            this.buttonSum.Size = new System.Drawing.Size(36, 34);
+            this.buttonSum.TabIndex = 16;
+            this.buttonSum.Text = "+";
+            this.buttonSum.UseVisualStyleBackColor = false;
+            this.buttonSum.Click += new System.EventHandler(this.add);
             // 
             // button3
             // 
@@ -192,7 +192,7 @@
             this.button3.TabIndex = 17;
             this.button3.Text = "-";
             this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            this.button3.Click += new System.EventHandler(this.subtract);
             // 
             // button4
             // 
@@ -204,7 +204,7 @@
             this.button4.TabIndex = 18;
             this.button4.Text = "×";
             this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            this.button4.Click += new System.EventHandler(this.multiply);
             // 
             // button5
             // 
@@ -216,6 +216,7 @@
             this.button5.TabIndex = 19;
             this.button5.Text = "÷";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.divide);
             // 
             // label2
             // 
@@ -260,12 +261,12 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.buttonSum);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox15);
-            this.Controls.Add(this.textBox14);
+            this.Controls.Add(this.fracaoResult);
+            this.Controls.Add(this.expoentResult);
             this.Controls.Add(this.textBox13);
-            this.Controls.Add(this.textBox12);
+            this.Controls.Add(this.signalResult);
             this.Controls.Add(this.textBox11);
             this.Controls.Add(this.valueTwoHex);
             this.Controls.Add(this.valueOneHex);
@@ -299,12 +300,12 @@
         private System.Windows.Forms.TextBox valueOneHex;
         private System.Windows.Forms.TextBox valueTwoHex;
         private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox signalResult;
         private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox expoentResult;
+        private System.Windows.Forms.TextBox fracaoResult;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonSum;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;

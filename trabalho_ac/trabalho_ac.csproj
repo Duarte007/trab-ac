@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IEEE754.cs" />
-    <Compile Include="classes\Ula24Bits.cs" />
+    <Compile Include="classes\Ula32Bits.cs" />
     <Compile Include="classes\Ula8Bits.cs" />
     <Compile Include="classes\Ula.cs" />
     <Compile Include="classes\SomadorCompleto.cs" />

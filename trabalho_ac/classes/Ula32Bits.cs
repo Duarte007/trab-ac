@@ -4,19 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace trabalho_ac {
-    public class Ula24Bits {
+    public class Ula32Bits {
         List<Ula8Bits> ulas8Bit = new List<Ula8Bits>();
-        int[] saidas = new int[24];
+        int[] saidas = new int[32];
         int[] currentNumsAUla = new int[8];
         int[] currentNumsBUla = new int[8];
 
-        public Ula24Bits(int[] numA, int[] numB, int operacao, int carryIn){
+        public Ula32Bits(int[] numA, int[] numB, int operacao, int carryIn){
             int start = 0;
             int end = 8;
             IEnumerable<int> numsAUla;
             IEnumerable<int> numsBUla;
-            if(numA.Length == numB.Length && numA.Length == 24){
-                for(int i = 2 ; i >= 0 ; i--){
+            if(numA.Length == numB.Length && numA.Length == 32){
+                for(int i = 3 ; i >= 0 ; i--){
                     numsAUla = numA.Skip(start).Take(end);
                     numsBUla = numB.Skip(start).Take(end);
                     int k = 0;
