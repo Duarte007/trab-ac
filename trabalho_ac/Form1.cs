@@ -133,11 +133,19 @@ namespace trabalho_ac
         // }
 
         private void add(object sender, EventArgs e) {
+
             IEEE754 patternIEEE = new IEEE754();
+            
             valueOne.Text = !string.IsNullOrEmpty(valueOne.Text) ? valueOne.Text.Replace(".", ",") : "0";
             valueTwo.Text = !string.IsNullOrEmpty(valueTwo.Text) ? valueTwo.Text.Replace(".", ",") : "0";
+
             string nBin1 = patternIEEE.FloatToBinary(float.Parse(valueOne.Text)).Replace(" ", "");
             string nBin2 = patternIEEE.FloatToBinary(float.Parse(valueTwo.Text)).Replace(" ", "");
+
+            this.operation(nBin1, nBin2);
+        }
+
+        private void operation(string nBin1, string nBin2) {
             int signal1 = int.Parse(nBin1[0].ToString());
             int signal2 = int.Parse(nBin2[0].ToString());
 
@@ -154,12 +162,15 @@ namespace trabalho_ac
             string fractionBin2 = "1" + nBin2.Substring(9, 23);
 
             this.currentExpo = exponentBin1;
-            if (lengthBin1 > lengthBin2) {
+            if (lengthBin1 > lengthBin2)
+            {
                 int diff = lengthBin1 - lengthBin2;
                 int[] result = new Ula8Bits(arrayParse(exponentBin1, 8), arrayParse(diff.ToString("2"), 8), 3, 0).getSaidas();
                 this.currentExpo = string.Join(string.Empty, result);
                 fractionBin2 = "0" + fractionBin2.Substring(0, 23);
-            } else if (lengthBin1 < lengthBin2) {
+            }
+            else if (lengthBin1 < lengthBin2)
+            {
                 int diff = lengthBin2 - lengthBin1;
                 int[] result = new Ula8Bits(arrayParse(exponentBin2, 8), arrayParse(diff.ToString("2"), 8), 3, 0).getSaidas();
                 this.currentExpo = string.Join(string.Empty, result);
@@ -167,13 +178,14 @@ namespace trabalho_ac
             }
             Ula24Bits ula24Bits = new Ula24Bits(arrayParse(fractionBin1, 24), arrayParse(fractionBin2, 24), 3, 0);
             string mantissa = string.Join(string.Empty, ula24Bits.getSaidas());
-            if (ula24Bits.getCarryOut() == 1) {
+            if (ula24Bits.getCarryOut() == 1)
+            {
                 int[] bitToNormalize = new int[8] { 0, 0, 0, 0, 0, 0, 0, 1 };
                 int[] finalResult = new Ula8Bits(arrayParse(this.currentExpo, 8), bitToNormalize, 3, 0).getSaidas();
                 this.currentExpo = string.Join(string.Empty, finalResult);
             }
 
-            
+
             signalResult.Text = string.Join(string.Empty, new Ula(signal1, signal2, 3, 0).getSaidaUla());
             expoentResult.Text = this.currentExpo;
             fracaoResult.Text = mantissa;
@@ -181,9 +193,15 @@ namespace trabalho_ac
 
         private void multiply(object sender, EventArgs e) {
             IEEE754 patternIEEE = new IEEE754();
-            valueOne.Text = !string.IsNullOrEmpty(valueOne.Text) ? valueOne.Text : "0";
-            valueTwo.Text = !string.IsNullOrEmpty(valueTwo.Text) ? valueTwo.Text : "0";
-            // for( int i = 0; i < int.Parse())
+
+            valueOne.Text = !string.IsNullOrEmpty(valueOne.Text) ? valueOne.Text.Replace(".", ",") : "0";
+            valueTwo.Text = !string.IsNullOrEmpty(valueTwo.Text) ? valueTwo.Text.Replace(".", ",") : "0";
+
+            string nBin1 = patternIEEE.FloatToBinary(float.Parse(valueOne.Text)).Replace(" ", "");
+            string nBin2 = patternIEEE.FloatToBinary(float.Parse(valueTwo.Text)).Replace(" ", "");
+            for (int i = 0; i < int.Parse(valueTwo.Text); i++) {
+                this.operation(nBin1, nBin1);
+            }
         }
 
         private void divide(object sender, EventArgs e) {
