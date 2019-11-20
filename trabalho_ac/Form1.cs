@@ -77,10 +77,12 @@ namespace trabalho_ac
                 int diff = lengthBin1 - lengthBin2;
                 int[] result = new Ula8Bits(arrayParse(exponentBin1, 8), arrayParse(diff.ToString("2"), 8), 3, 0).getSaidas();
                 this.currentExpo = string.Join(string.Empty, result);
+                fractionBin2 = "0".fractionBin2.Substring(9, 23);
             } else if (lengthBin1 < lengthBin2) {
                 int diff = lengthBin2 - lengthBin1;
                 int[] result = new Ula8Bits(arrayParse(exponentBin2, 8), arrayParse(diff.ToString("2"), 8), 3, 0).getSaidas();
                 this.currentExpo = string.Join(string.Empty, result);
+                fractionBin1 = "0".fractionBin1.Substring(9, 23);
             } else {
                 int[] bit = new int[8] { 0, 0, 0, 0, 0, 0, 0, 1 };
                 int[] result = new Ula8Bits(arrayParse(exponentBin1, 8), bit, 3, 0).getSaidas();
@@ -90,7 +92,8 @@ namespace trabalho_ac
             string mantissa = string.Join(string.Empty, ula24Bits.getSaidas());
             if(ula24Bits.getCarryOut() == 1){
                 int[] bitToNormalize = new int[8] { 0, 0, 0, 0, 0, 0, 0, 1 };
-                this.currentExpo = new Ula8Bits(arrayParse(this.currentExpo, 8), bitToNormalize, 3, 0).getSaidas();
+                int[] finalResult = new Ula8Bits(arrayParse(this.currentExpo, 8), bitToNormalize, 3, 0).getSaidas();
+                this.currentExpo = string.Join(string.Empty, finalResult);
             }
             // fractionBin1 = fractionBin1.PadLeft(24, '1');
             // fractionBin2 = fractionBin2.PadLeft(24, '1');
