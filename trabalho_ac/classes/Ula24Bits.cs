@@ -15,7 +15,9 @@ namespace trabalho_ac {
             int end = 8;
             IEnumerable<int> numsAUla;
             IEnumerable<int> numsBUla;
-            if(numA.Length == numB.Length && numA.Length == 24){
+            Array.Reverse(numA);
+            Array.Reverse(numB);
+            if (numA.Length == numB.Length && numA.Length == 24){
                 for(int i = 2 ; i >= 0 ; i--){
                     numsAUla = numA.Skip(start).Take(end);
                     numsBUla = numB.Skip(start).Take(end);
@@ -30,7 +32,9 @@ namespace trabalho_ac {
                         l++;
                     }
                     int currentCarryIn = ulas8Bit.Count-1 != -1 ? 
-                            ulas8Bit[ulas8Bit.Count-1].getCarryOut() : carryIn; 
+                            ulas8Bit[ulas8Bit.Count-1].getCarryOut() : carryIn;
+                    Array.Reverse(currentNumsAUla);
+                    Array.Reverse(currentNumsBUla);
                     ulas8Bit.Add(new Ula8Bits(currentNumsAUla, currentNumsBUla, operacao, currentCarryIn));
                     start+=8;
                 }
@@ -39,7 +43,7 @@ namespace trabalho_ac {
 
         public int[] getSaidas(){
             int k = 0;
-            for(int i = 0 ; i < ulas8Bit.Count ; i++) {
+            for(int i = ulas8Bit.Count - 1; i >= 0 ; i--) {
                foreach(int saida in ulas8Bit[i].getSaidas()){
                     saidas[k] = saida;
                     k++;

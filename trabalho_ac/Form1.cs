@@ -77,16 +77,12 @@ namespace trabalho_ac
                 int diff = lengthBin1 - lengthBin2;
                 int[] result = new Ula8Bits(arrayParse(exponentBin1, 8), arrayParse(diff.ToString("2"), 8), 3, 0).getSaidas();
                 this.currentExpo = string.Join(string.Empty, result);
-                fractionBin2 = "0".fractionBin2.Substring(9, 23);
+                fractionBin2 = "0"+fractionBin2.Substring(9, 23);
             } else if (lengthBin1 < lengthBin2) {
                 int diff = lengthBin2 - lengthBin1;
                 int[] result = new Ula8Bits(arrayParse(exponentBin2, 8), arrayParse(diff.ToString("2"), 8), 3, 0).getSaidas();
                 this.currentExpo = string.Join(string.Empty, result);
-                fractionBin1 = "0".fractionBin1.Substring(9, 23);
-            } else {
-                int[] bit = new int[8] { 0, 0, 0, 0, 0, 0, 0, 1 };
-                int[] result = new Ula8Bits(arrayParse(exponentBin1, 8), bit, 3, 0).getSaidas();
-                this.currentExpo = string.Join(string.Empty, result);
+                fractionBin1 = "0"+fractionBin1.Substring(9, 23);
             }
             Ula24Bits ula24Bits = new Ula24Bits(arrayParse(fractionBin1, 24), arrayParse(fractionBin2, 24), 3, 0);
             string mantissa = string.Join(string.Empty, ula24Bits.getSaidas());
@@ -144,15 +140,43 @@ namespace trabalho_ac
             string nBin2 = patternIEEE.FloatToBinary(float.Parse(valueTwo.Text)).Replace(" ", "");
             int signal1 = int.Parse(nBin1[0].ToString());
             int signal2 = int.Parse(nBin2[0].ToString());
-            string[] resultP = normalizeBin(nBin1, nBin2);
-            int[] arrBin1 = arrayParse(resultP[0], 32);
-            int[] arrBin2 = arrayParse(resultP[1], 32);
-            Ula32Bits ula = new Ula32Bits(arrBin1, arrBin2, 3, 0);
-            int[] saidas = ula.getSaidas();
-            string result = string.Join(string.Empty, saidas);
-            signalResult.Text = new Ula(signal1, signal2, 3, 0).getSaidaUla().ToString();
+
+            string signalBitBin1 = nBin1.Substring(0, 1);
+            string exponentBin1 = nBin1.Substring(1, 8);
+            int expoBin1 = Convert.ToInt32(exponentBin1, 2);
+            int lengthBin1 = expoBin1 - 127;
+            string fractionBin1 = "1" + nBin1.Substring(9, 23);
+
+            string signalBitBin2 = nBin2.Substring(0, 1);
+            string exponentBin2 = nBin2.Substring(1, 8);
+            int expoBin2 = Convert.ToInt32(exponentBin2, 2);
+            int lengthBin2 = expoBin2 - 127;
+            string fractionBin2 = "1" + nBin2.Substring(9, 23);
+
+            this.currentExpo = exponentBin1;
+            if (lengthBin1 > lengthBin2) {
+                int diff = lengthBin1 - lengthBin2;
+                int[] result = new Ula8Bits(arrayParse(exponentBin1, 8), arrayParse(diff.ToString("2"), 8), 3, 0).getSaidas();
+                this.currentExpo = string.Join(string.Empty, result);
+                fractionBin2 = "0" + fractionBin2.Substring(0, 23);
+            } else if (lengthBin1 < lengthBin2) {
+                int diff = lengthBin2 - lengthBin1;
+                int[] result = new Ula8Bits(arrayParse(exponentBin2, 8), arrayParse(diff.ToString("2"), 8), 3, 0).getSaidas();
+                this.currentExpo = string.Join(string.Empty, result);
+                fractionBin1 = "0" + fractionBin1.Substring(0, 23);
+            }
+            Ula24Bits ula24Bits = new Ula24Bits(arrayParse(fractionBin1, 24), arrayParse(fractionBin2, 24), 3, 0);
+            string mantissa = string.Join(string.Empty, ula24Bits.getSaidas());
+            if (ula24Bits.getCarryOut() == 1) {
+                int[] bitToNormalize = new int[8] { 0, 0, 0, 0, 0, 0, 0, 1 };
+                int[] finalResult = new Ula8Bits(arrayParse(this.currentExpo, 8), bitToNormalize, 3, 0).getSaidas();
+                this.currentExpo = string.Join(string.Empty, finalResult);
+            }
+
+            
+            signalResult.Text = string.Join(string.Empty, new Ula(signal1, signal2, 3, 0).getSaidaUla());
             expoentResult.Text = this.currentExpo;
-            fracaoResult.Text = result.Substring(9, 23);
+            fracaoResult.Text = mantissa;
         }
 
         private void multiply(object sender, EventArgs e) {
