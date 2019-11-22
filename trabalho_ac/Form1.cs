@@ -112,6 +112,43 @@ namespace trabalho_ac
 
         private void subtract(object sender, EventArgs e) {
 
+            IEEE754 patternIEEE = new IEEE754();
+
+            double v1 = !string.IsNullOrEmpty(valueOne.Text) ? double.Parse(valueOne.Text.Replace(".", ",")) : 0d;
+            double v2 = !string.IsNullOrEmpty(valueTwo.Text) ? double.Parse(valueTwo.Text.Replace(".", ",")) : 0d;
+
+            string nBin1 = patternIEEE.FloatToBinary(float.Parse(valueOne.Text)).Replace(" ", "");
+            string nBin2 = patternIEEE.FloatToBinary(float.Parse(valueTwo.Text)).Replace(" ", "");
+            string mantissaBit1="", mantissaBit2 = "";
+            Ula24Bits ula24Bits;
+            // if (v1 < 0)
+            // {
+            //     nBin1 = nBin1[0] + nBin1.Substring(1, 8) + nBin1.Substring(9, 23).Replace('0', 'x');
+            //     nBin1 = nBin1[0] + nBin1.Substring(1, 8) + nBin1.Substring(9, 23).Replace('1', '0');
+            //     nBin1 = nBin1[0] + nBin1.Substring(1, 8) + nBin1.Substring(9, 23).Replace('x', '1');
+            //     ula24Bits = new Ula24Bits(arrayParse(nBin1.Substring(9, 23), 24), arrayParse("1".PadLeft(24, '0'), 24), 3, 0);
+            //     mantissaBit1 = string.Join(string.Empty, ula24Bits.getSaidas());
+            //     mantissaBit1 = nBin1[0] + nBin1.Substring(1, 8) + mantissaBit1.Substring(0, 23);
+            // }
+            // if (v2 < 0) {
+            //     nBin2 = nBin2[0] + nBin2.Substring(1, 8) + nBin2.Substring(9, 23).Replace('0', 'x');
+            //     nBin2 = nBin2[0] + nBin2.Substring(1, 8) + nBin2.Substring(9, 23).Replace('1', '0');
+            //     nBin2 = nBin2[0] + nBin2.Substring(1, 8) + nBin2.Substring(9, 23).Replace('x', '1');
+            //     ula24Bits = new Ula24Bits(arrayParse(nBin2.Substring(9, 23), 24), arrayParse("1".PadLeft(24, '0'), 24), 3, 0);
+            //     mantissaBit2 = string.Join(string.Empty, ula24Bits.getSaidas());
+            //     mantissaBit2 = nBin2[0] + nBin2.Substring(1, 8) + mantissaBit2.Substring(0, 23);
+            // }
+            if (mantissaBit2 == "") mantissaBit2 = nBin2;
+            mantissaBit2 = mantissaBit2[0] + mantissaBit2.Substring(1, 8) + mantissaBit2.Substring(9, 23).Replace('0', 'x');
+            mantissaBit2 = mantissaBit2[0] + mantissaBit2.Substring(1, 8) + mantissaBit2.Substring(9, 23).Replace('1', '0');
+            mantissaBit2 = mantissaBit2[0] + mantissaBit2.Substring(1, 8) + mantissaBit2.Substring(9, 23).Replace('x', '1');
+            ula24Bits = new Ula24Bits(arrayParse(mantissaBit2.Substring(9, 23), 24), arrayParse("1".PadLeft(24, '0'), 24), 3, 0);
+            mantissaBit2 = string.Join(string.Empty, ula24Bits.getSaidas());
+            mantissaBit2 = mantissaBit2[0] + mantissaBit2.Substring(1, 8) + mantissaBit2.Substring(0, 23);
+            if(mantissaBit1 == "") mantissaBit1 = nBin1;
+            string result = this.operation(mantissaBit1, mantissaBit2);
+            this.setResultFields(result);
+
         }
 
         // private void add(object sender, EventArgs e)
@@ -142,10 +179,11 @@ namespace trabalho_ac
             string nBin1 = patternIEEE.FloatToBinary(float.Parse(valueOne.Text)).Replace(" ", "");
             string nBin2 = patternIEEE.FloatToBinary(float.Parse(valueTwo.Text)).Replace(" ", "");
 
-            this.operation(nBin1, nBin2);
+            string result = this.operation(nBin1, nBin2);
+            this.setResultFields(result);
         }
 
-        private void operation(string nBin1, string nBin2) {
+        private string operation(string nBin1, string nBin2) {
             int signal1 = int.Parse(nBin1[0].ToString());
             int signal2 = int.Parse(nBin2[0].ToString());
 
@@ -167,41 +205,80 @@ namespace trabalho_ac
                 int diff = lengthBin1 - lengthBin2;
                 int[] result = new Ula8Bits(arrayParse(exponentBin1, 8), arrayParse(diff.ToString("2"), 8), 3, 0).getSaidas();
                 this.currentExpo = string.Join(string.Empty, result);
-                fractionBin2 = "0" + fractionBin2.Substring(0, 23);
+                string zeros = "".PadLeft(diff, '0');
+                fractionBin2 = zeros + fractionBin2.Substring(0, (24 - zeros.Length));
             }
             else if (lengthBin1 < lengthBin2)
             {
                 int diff = lengthBin2 - lengthBin1;
                 int[] result = new Ula8Bits(arrayParse(exponentBin2, 8), arrayParse(diff.ToString("2"), 8), 3, 0).getSaidas();
                 this.currentExpo = string.Join(string.Empty, result);
-                fractionBin1 = "0" + fractionBin1.Substring(0, 23);
+                string zeros = "".PadLeft(diff, '0');
+                fractionBin1 = zeros + fractionBin1.Substring(0, (24 - zeros.Length));
             }
             Ula24Bits ula24Bits = new Ula24Bits(arrayParse(fractionBin1, 24), arrayParse(fractionBin2, 24), 3, 0);
             string mantissa = string.Join(string.Empty, ula24Bits.getSaidas());
+
             if (ula24Bits.getCarryOut() == 1)
             {
                 int[] bitToNormalize = new int[8] { 0, 0, 0, 0, 0, 0, 0, 1 };
                 int[] finalResult = new Ula8Bits(arrayParse(this.currentExpo, 8), bitToNormalize, 3, 0).getSaidas();
                 this.currentExpo = string.Join(string.Empty, finalResult);
+                mantissa = mantissa.Substring(0, 23);
+            }
+            else {
+                mantissa = mantissa.Substring(1, 23);
             }
 
+            return string.Join(string.Empty, new Ula(signal1, signal2, 3, 0).getSaidaUla()) + this.currentExpo + mantissa.Substring(0, 23);
 
-            signalResult.Text = string.Join(string.Empty, new Ula(signal1, signal2, 3, 0).getSaidaUla());
-            expoentResult.Text = this.currentExpo;
-            fracaoResult.Text = mantissa;
+
         }
 
         private void multiply(object sender, EventArgs e) {
             IEEE754 patternIEEE = new IEEE754();
 
-            valueOne.Text = !string.IsNullOrEmpty(valueOne.Text) ? valueOne.Text.Replace(".", ",") : "0";
-            valueTwo.Text = !string.IsNullOrEmpty(valueTwo.Text) ? valueTwo.Text.Replace(".", ",") : "0";
-
+            double v1 = !string.IsNullOrEmpty(valueOne.Text) ? double.Parse(valueOne.Text.Replace(".", ",")) : 0d;
+            double v2 = !string.IsNullOrEmpty(valueTwo.Text) ? double.Parse(valueTwo.Text.Replace(".", ",")) : 0d;
+            double count;
+            bool boolV1 = IsInteger(v1);
+            bool boolV2 = IsInteger(v2);
+            
             string nBin1 = patternIEEE.FloatToBinary(float.Parse(valueOne.Text)).Replace(" ", "");
             string nBin2 = patternIEEE.FloatToBinary(float.Parse(valueTwo.Text)).Replace(" ", "");
-            for (int i = 0; i < int.Parse(valueTwo.Text); i++) {
-                this.operation(nBin1, nBin1);
+            string mult, result;
+
+            if (boolV1) {
+                count = v1 - 1;
+                mult = nBin2;
+                result = nBin2;
+            }  else if (boolV2) {
+                count = v2 - 1;
+                mult = nBin1;
+                result = nBin1;
+            } else {
+                count = Math.Floor(double.Parse(valueTwo.Text)) - 1;
+                mult = nBin1;
+                result = nBin1;
             }
+            
+            for (int i = 0; i < count ; i++) {
+                result = this.operation(result, mult);
+            }
+
+            this.setResultFields(result);
+        }
+
+        public bool IsInteger(double d)
+        {
+            if (d == (int)d) return true;
+            else return false;
+        }
+
+        private void setResultFields(string binResult) {
+            signalResult.Text = binResult.Substring(0, 1);
+            expoentResult.Text = binResult.Substring(1, 8);
+            fracaoResult.Text = binResult.Substring(9, 23);
         }
 
         private void divide(object sender, EventArgs e) {
