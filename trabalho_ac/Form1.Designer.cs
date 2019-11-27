@@ -38,9 +38,9 @@
             this.fracao2 = new System.Windows.Forms.TextBox();
             this.valueOneHex = new System.Windows.Forms.TextBox();
             this.valueTwoHex = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.floatResult = new System.Windows.Forms.TextBox();
             this.signalResult = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.hexResult = new System.Windows.Forms.TextBox();
             this.expoentResult = new System.Windows.Forms.TextBox();
             this.fracaoResult = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -123,12 +123,12 @@
             this.valueTwoHex.Size = new System.Drawing.Size(138, 20);
             this.valueTwoHex.TabIndex = 9;
             // 
-            // textBox11
+            // floatResult
             // 
-            this.textBox11.Location = new System.Drawing.Point(288, 357);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(115, 20);
-            this.textBox11.TabIndex = 10;
+            this.floatResult.Location = new System.Drawing.Point(288, 357);
+            this.floatResult.Name = "floatResult";
+            this.floatResult.Size = new System.Drawing.Size(115, 20);
+            this.floatResult.TabIndex = 10;
             // 
             // signalResult
             // 
@@ -137,12 +137,12 @@
             this.signalResult.Size = new System.Drawing.Size(32, 20);
             this.signalResult.TabIndex = 11;
             // 
-            // textBox13
+            // hexResult
             // 
-            this.textBox13.Location = new System.Drawing.Point(275, 434);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(144, 20);
-            this.textBox13.TabIndex = 12;
+            this.hexResult.Location = new System.Drawing.Point(275, 434);
+            this.hexResult.Name = "hexResult";
+            this.hexResult.Size = new System.Drawing.Size(144, 20);
+            this.hexResult.TabIndex = 12;
             // 
             // expoentResult
             // 
@@ -265,9 +265,9 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.fracaoResult);
             this.Controls.Add(this.expoentResult);
-            this.Controls.Add(this.textBox13);
+            this.Controls.Add(this.hexResult);
             this.Controls.Add(this.signalResult);
-            this.Controls.Add(this.textBox11);
+            this.Controls.Add(this.floatResult);
             this.Controls.Add(this.valueTwoHex);
             this.Controls.Add(this.valueOneHex);
             this.Controls.Add(this.fracao2);
@@ -299,9 +299,9 @@
         private System.Windows.Forms.TextBox fracao2;
         private System.Windows.Forms.TextBox valueOneHex;
         private System.Windows.Forms.TextBox valueTwoHex;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox floatResult;
         private System.Windows.Forms.TextBox signalResult;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox hexResult;
         private System.Windows.Forms.TextBox expoentResult;
         private System.Windows.Forms.TextBox fracaoResult;
         private System.Windows.Forms.Button button1;

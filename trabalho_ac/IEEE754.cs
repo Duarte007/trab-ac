@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,6 +36,13 @@ namespace trabalho_ac
             result +=Convert.ToInt32(bin, 2).ToString("X");
            
             return result;
+        }
+
+        public float hexToFloat(string hex) {
+            uint num = uint.Parse(hex, NumberStyles.AllowHexSpecifier);
+
+            byte[] floatVals = BitConverter.GetBytes(num);
+            return BitConverter.ToSingle(floatVals, 0);
         }
     }
 }
